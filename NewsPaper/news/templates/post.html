@@ -1,0 +1,17 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+    {% for category in post.post_category.all %}
+        <button><a href="{% url 'subscribed' category.id %}"><u> Подписаться/Отписаться </u></a></button>
+        <h1>{{ category.category_name }}</h1>
+    {% endfor %}
+    <h1>{{ post.heading|censor }}</h1>
+    {{ post.creation_date }}
+    <h3>{{ post.text|censor }}</h3>
+{% endblock content %}
